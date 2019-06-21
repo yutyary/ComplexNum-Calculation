@@ -5,8 +5,9 @@ typedef struct complex;
 struct complex {
   double Real_Num;
   double Imaginary_Num;
-}
-  
+}  
+
+  void ShowComplex(complex x,complex y,complex Ans,int Command); //Command: 1>+ 2>- 3>* 4>/
 complex AddComplex(complex x,complex y); // = x + y
 complex SubComplex(complex x,complex y); // = x - y
 complex MulComplex(complex x,complex y); // = x * y
@@ -22,12 +23,41 @@ int main(void) {
   scanf("%lf %;f",&x.Real_Num,&x.Imaginary_Num);
 
   Ans = AddComplex(x,y);
-  printf("(%lf + %lf) + (%lf + %lf) = %lf + %lf\n",&x.Real_Num,&x.Imaginary_Num,&y.Real_Num,&y.Imaginary_Num,&Ans.Real_Num,&Ans.Imaginary_Num);
-  Ans = SubComplex(x,y);
-  printf("(%lf + %lf) - (%lf + %lf) = %lf + %lf\n",&x.Real_Num,&x.Imaginary_Num,&y.Real_Num,&y.Imaginary_Num,&Ans.Real_Num,&Ans.Imaginary_Num);
+  ShowComplex(x,y,Ans,1);
+  Sub = AddComplex(x,y);
+  ShowComplex(x,y,Ans,2);
+  /* Mul = AddComplex(x,y);
+  ShowComplex(x,y,Ans,3);
+  Div = AddComplex(x,y);
+  ShowComplex(x,y,Ans,4);*/
+
+  return 0;
+}
+
+ShowComplex(complex x,complex y,complex Ans,int Command) {
+  printf("%lf + %lfi",&x.Real_num,&x.Imaginary_Num);
+  
+  switch(Command) {
+  case 1:
+    printf(" + ");
+    break;
+  case 2:
+    printf(" - ");
+    break;
+  case 3:
+    printf(" * ");
+    break;
+  case 4:
+    printf(" / ");
+    break;
+  }
+  
+  printf("%lf + %lfi = ",&y.Real_num,&y.Imaginary_Num);
+  printf("%lf + %lfi\n",&Ans.Real_num,&Ans.Imaginary_Num);
   
   return 0;
 }
+
 
 complex AddComplex(complex x,complex y) {
   complex Ans;
