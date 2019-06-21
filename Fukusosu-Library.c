@@ -1,13 +1,13 @@
 #include<stdio.h>
 
-typedef struct complex;
+typedef struct complex complex;
 
 struct complex {
-  double Real_Num;
-  double Imaginary_Num;
-}  
+  double real;
+  double imaginary;
+};
 
-  void ShowComplex(complex x,complex y,complex Ans,int Command); //Command: 1>+ 2>- 3>* 4>/
+void ShowComplex(complex x,complex y,complex Ans,int Command); //Command: 1>+ 2>- 3>* 4>/
 complex AddComplex(complex x,complex y); // = x + y
 complex SubComplex(complex x,complex y); // = x - y
 complex MulComplex(complex x,complex y); // = x * y
@@ -17,25 +17,25 @@ int main(void) {
   complex x,y,Ans;
   printf("Please write x's Real and Imaginary number.\n");
   printf("Real_Num Imaginary_Num:");
-  scanf("%lf %lf",&x.Real_Num,&x.Imaginary_Num);
+  scanf("%lf %lf",&x.real,&x.imaginary);
   printf("Please write y's Real and Imaginary number.\n");
   printf("Real_Num Imaginary_Num:");
-  scanf("%lf %;f",&x.Real_Num,&x.Imaginary_Num);
+  scanf("%lf %lf",&y.real,&y.imaginary);
 
   Ans = AddComplex(x,y);
   ShowComplex(x,y,Ans,1);
-  Sub = AddComplex(x,y);
+  Ans = SubComplex(x,y);
   ShowComplex(x,y,Ans,2);
-  /* Mul = AddComplex(x,y);
+  Ans = MulComplex(x,y);
   ShowComplex(x,y,Ans,3);
-  Div = AddComplex(x,y);
+  /*Ans = DivComplex(x,y);
   ShowComplex(x,y,Ans,4);*/
 
   return 0;
 }
 
-ShowComplex(complex x,complex y,complex Ans,int Command) {
-  printf("%lf + %lfi",&x.Real_num,&x.Imaginary_Num);
+void ShowComplex(complex x,complex y,complex Ans,int Command) {
+  printf("%lf + %lfi",x.real,x.imaginary);
   
   switch(Command) {
   case 1:
@@ -52,31 +52,31 @@ ShowComplex(complex x,complex y,complex Ans,int Command) {
     break;
   }
   
-  printf("%lf + %lfi = ",&y.Real_num,&y.Imaginary_Num);
-  printf("%lf + %lfi\n",&Ans.Real_num,&Ans.Imaginary_Num);
+  printf("%lf + %lfi = ",y.real,y.imaginary);
+  printf("%lf + %lfi\n",Ans.real,Ans.imaginary);
   
-  return 0;
 }
 
 
 complex AddComplex(complex x,complex y) {
   complex Ans;
-  Ans.Real_Num = x.Real_Num + y.Real_Num;
-  Ans.Imaginary_Num = x.Imaginary_Num + y.Imaginary_Num;
+  Ans.real = x.real + y.real;
+  Ans.imaginary = x.imaginary + y.imaginary;
   return Ans;
 }
 
 
 complex SubComplex(complex x,complex y) {
   complex Ans;
-  Ans.Real_Num = x.Real_Num - y.Real_Num;
-  Ans.Imaginary_Num = x.Imaginary_Num - y.Imaginary_Num;
+  Ans.real = x.real - y.real;
+  Ans.imaginary = x.imaginary - y.imaginary;
   return Ans;
 }
 
 complex MulComplex(complex x,complex y) {
   complex Ans;
-
+  Ans.real = x.real * y.real - x.imaginary * y.imaginary;
+  Ans.imaginary = x.real * y.imaginary + y.real * y.imaginary;
   
   return Ans;
 }
